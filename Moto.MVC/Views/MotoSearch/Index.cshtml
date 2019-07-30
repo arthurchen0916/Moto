@@ -1,0 +1,75 @@
+﻿@model  IEnumerable<Moto.Common.Entities.Model>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>機車查詢功能</title>
+</head>
+
+<body>
+    <h1>機車查詢頁面</h1>
+
+    <p>
+        品牌：
+        @using (Html.BeginForm())
+        {
+            @Html.DropDownList("Models")
+        }
+
+    </p>
+
+    <p>
+        年份：
+        @using (Html.BeginForm())
+        {
+            @Html.DropDownList("Yearlists")
+        }
+    </p>
+
+    <p>
+        排氣量：<br />
+        @Html.TextBox("cc", "", new { style = "width:50px" }) cc ~ @Html.TextBox("cc2", "", new { style = "width:50px" }) cc
+    </p>
+
+    <p>
+        有無ABS：<br />
+        有 @Html.RadioButton("ABS", "true")
+        無 @Html.RadioButton("ABS", "false")
+    </p>
+
+    <p>
+        售價：<br />
+        $ @Html.TextBox("Factory_price", "", new { style = "width:50px" })  ~ $ @Html.TextBox("Factory_price2", "", new { style = "width:50px" })
+    </p>
+
+    <table class="table">
+        @foreach (var model in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => model.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Retail_price)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="query" class="btn btn-default" />
+        </div>
+    </div>
+</body>
+</html>
