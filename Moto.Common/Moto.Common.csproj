@@ -55,6 +55,7 @@
     <Compile Include="Entities\Brand.cs" />
     <Compile Include="Interfaces\IDomainEventDispatcher.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

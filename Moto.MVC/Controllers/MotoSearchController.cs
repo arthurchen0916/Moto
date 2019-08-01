@@ -34,8 +34,8 @@ namespace Moto.MVC.Controllers
             ViewBag.Yearlists= yearlist.Select(x =>
                                                       new SelectListItem()
                                                       {
-                                                          Text = x.Year.ToString(),
-                                                          Value = x.id.ToString()
+                                                          Text = x.ToString(),
+                                                          Value = x.ToString()
                                                       });
 
 

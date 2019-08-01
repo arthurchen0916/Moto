@@ -8,7 +8,7 @@ namespace Moto.Core
 {
     public class ModelService
     {
-        IRepository<Model> modelRepository;
+        IModelRepository modelRepository;
 
         public ModelService()
         {
@@ -18,6 +18,13 @@ namespace Moto.Core
         public IEnumerable<Model> GetAll()
         {
             var result = modelRepository.FindAll();
+            return result;
+        }
+
+        //GetYear
+        public IEnumerable<string> GetYear()
+        {
+            var result =modelRepository.QueryYearBySql("select distinct year from model");
             return result;
         }
 
@@ -72,9 +79,9 @@ namespace Moto.Core
             return result;
         }
 
-        public Model Query(int cc)
+        public Model Query(int id)
         {
-            var model = modelRepository.Find(x => x.cc == cc).SingleOrDefault();
+            var model = modelRepository.Find(x => x.id == id).SingleOrDefault();
 
             return model;
         }
