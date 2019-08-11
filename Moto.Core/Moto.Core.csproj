@@ -49,9 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrandService.cs" />
+    <Compile Include="CustomerService.cs" />
     <Compile Include="MemberService.cs" />
     <Compile Include="ModelService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

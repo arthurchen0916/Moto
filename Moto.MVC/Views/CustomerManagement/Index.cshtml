@@ -1,0 +1,89 @@
+﻿@model  IEnumerable<Moto.Common.Entities.Customer>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>客戶管理系統</title>
+    <style>
+        #diva {
+            width: 50%;
+            height: auto;
+            float: left;
+            margin:10px auto;
+        }
+
+        #divb {
+            width: 50%;
+            height: auto;
+            float: left;
+            margin: 10px auto;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>客戶管理系統</h1>
+    @using (Html.BeginForm("Query", "CustomerManagement", FormMethod.Post))
+    {
+        <div id="diva">手機號碼：@Html.TextBox("Phone_Number", "", new { style = "width:80px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" })</div>
+        <div id="diva">住家電話：@Html.TextBox("Tel_Number", "", new { style = "width:80px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" })</div>
+        <div id="diva">姓名： @Html.TextBox("Name", "", new { style = "width:70px" })</div>
+        <div id="diva">車牌號碼： @Html.TextBox("License_Plate", "", new { style = "width:80px" })</div>
+        <div id="diva">地址： @Html.TextBox("Address", "", new { style = "width:150px" })</div>
+        <div id="diva"> <input type="submit" value="查詢" class="btn btn-default" /></div>
+    }
+
+    <div id="divb"><h3>查詢結果</h3></div>
+    <div id="divb"><h3>共計  筆</h3></div>
+
+    <div id="diva">
+        <table class="table" border="1" cellpadding="5" width="1000" align="center">
+            <tr>
+                <th></th>
+                <th>姓名</th>
+                <th>車牌</th>
+                <th>手機號碼</th>
+                <th>住家電話</th>
+                <th>地址</th>
+                <th></th>
+            </tr>
+
+            @foreach (var model in Model)
+            {
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.License_Plate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Phone_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Tel_Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Address)
+                </td>
+                <td></td>
+            </tr>
+            }
+        </table>
+     </div>
+</body>
+</html>

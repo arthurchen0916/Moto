@@ -5,6 +5,8 @@ namespace Moto.Common.Interfaces
 {
     public interface IModelRepository : IRepository<Model>
     {
-        IEnumerable<Model> QueryYearBySql(string sql, params object[] parameters);
+        IEnumerable<int> QueryYearBySql(string sql);
+
+        IEnumerable<Model> QueryModelBySql(string sql, params object[] parameters);
     }
 }

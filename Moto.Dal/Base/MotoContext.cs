@@ -16,10 +16,12 @@ namespace Moto.Dal.Base
             modelBuilder.Configurations.Add(new BrandConfiguration());
             modelBuilder.Configurations.Add(new ModelConfiguration());
             modelBuilder.Configurations.Add(new MemberConfiguration());
+            modelBuilder.Configurations.Add(new CustomerConfiguration());
         }
 
         public virtual DbSet<Brand> Brand { get; set; }
         public virtual DbSet<Model> Model { get; set; }
         public virtual DbSet<Member> Member { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
     }
 }  

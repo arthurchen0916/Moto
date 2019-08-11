@@ -50,12 +50,19 @@
   <ItemGroup>
     <Compile Include="BaseDomainEvent.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Member.cs" />
     <Compile Include="Entities\Model.cs" />
     <Compile Include="Entities\Brand.cs" />
+    <Compile Include="Entities\Transaction.cs" />
+    <Compile Include="Interfaces\ICustomerRepository.cs" />
     <Compile Include="Interfaces\IDomainEventDispatcher.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IModelRepository.cs" />
+    <Compile Include="Interfaces\ITransactionRepository.cs" />
+    <Compile Include="Models\CustomerManagement.cs" />
+    <Compile Include="Models\MotoSearch.cs" />
+    <Compile Include="Models\TransactionRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

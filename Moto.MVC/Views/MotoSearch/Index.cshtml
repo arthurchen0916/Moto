@@ -11,68 +11,103 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>機車查詢功能</title>
+    <style>
+        #diva {
+            width: 50%;
+            height: auto;
+            float: left;
+            margin:10px auto;
+        }
+
+        #divb {
+            width: 50%;
+            height: auto;
+            float: left;
+            margin: 10px auto;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
     <h1>機車查詢頁面</h1>
+    @using (Html.BeginForm("Query", "MotoSearch", FormMethod.Post))
+    {
+        <div id="diva">品牌：@Html.DropDownList("Brand_code")</div>
+        <div id="diva">年份：@Html.DropDownList("year")</div>
+        <div id="diva">排氣量： @Html.TextBox("cc_s", "", new { style = "width:70px", Type="number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" }) cc以上 ~ @Html.TextBox("cc_e", "", new { style = "width:70px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" }) cc以下 </div>
+        <div id="diva">有無ABS：<br />
+            有 @Html.RadioButton("ABS", "1")
+            無 @Html.RadioButton("ABS", "0")</div><br>
+        <div id="diva"> 售價：$  @Html.TextBox("Factory_price", "", new { style = "width:80px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" }) 以上 ~ $  @Html.TextBox("Factory_price2", "", new { style = "width:80px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" }) 以下</div>
 
-    <p>
-        品牌：
-        @using (Html.BeginForm())
-        {
-            @Html.DropDownList("Models")
-        }
+        <div id="diva"> <input type="submit" value="query" class="btn btn-default" /></div>
+    }
 
-    </p>
+   <div id="divb"><h3>查詢結果</h3></div>
+   <div id="divb"><h3>共計  筆</h3></div>
+    
+    <div id="diva">
+        <table  class="table" border="1"  cellpadding="5" width="1000" align="center">
+            <tr>
+                <th>流水號</th>
+                <th>品牌</th>
+                <th>機種名稱</th>
+                <th>年份</th>
+                <th>排氣量</th>
+                <th>顏色</th>
+                <th>前煞系統</th>
+                <th>後煞系統</th>
+                <th>ABS</th>
+                <th>儀錶板</th>
+                <th>建議價格</th>
+            </tr>
 
-    <p>
-        年份：
-        @using (Html.BeginForm())
-        {
-            @Html.DropDownList("Yearlists")
-        }
-    </p>
-
-    <p>
-        排氣量：<br />
-        @Html.TextBox("cc", "", new { style = "width:50px" }) cc ~ @Html.TextBox("cc2", "", new { style = "width:50px" }) cc
-    </p>
-
-    <p>
-        有無ABS：<br />
-        有 @Html.RadioButton("ABS", "true")
-        無 @Html.RadioButton("ABS", "false")
-    </p>
-
-    <p>
-        售價：<br />
-        $ @Html.TextBox("Factory_price", "", new { style = "width:50px" })  ~ $ @Html.TextBox("Factory_price2", "", new { style = "width:50px" })
-    </p>
-
-    <table class="table">
-        @foreach (var model in Model)
-        {
+            @foreach (var model in Model)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => model.id)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => model.brand_code)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => model.model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.cc) cc
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Front_wheel_brakes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Rear_wheel_brakes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.ABS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => model.Instrument_panel)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => model.Retail_price)
                 </td>
             </tr>
-        }
-    </table>
 
-    <div class="form-group">
-        @using (Html.BeginForm("QueryByCC", "MotoSearch", FormMethod.Post))
-        {
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="query" class="btn btn-default" />
-            </div>
-        }
-    </div>
-</body>
+            }
+        </table>
+        </div>
+    </body>
 </html>

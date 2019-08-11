@@ -1,69 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Moto.Core;
 using Moto.Common.Entities;
+using Moto.Common.Models;
 
 namespace Moto.MVC.Controllers
 {
     public class MotoSearchController : Controller
     {
-
-        BrandService brandService;
-        ModelService modelService;
+        BrandService brandService = new BrandService();
+        ModelService modelService = new ModelService();
 
         // GET: MotoSearch
         public ActionResult Index()
         {
-            modelService = new ModelService();
-            brandService = new BrandService();
+            InitBag();
+            IEnumerable<Model> model = new List<Model>();
+            return View(model);
 
-            var models = brandService.GetAll().ToList();
-
-            ViewBag.Models = models.Select(x =>
-                                                      new SelectListItem()
-                                                      {
-                                                          Text = x.Brand_code,
-                                                          Value = x.id.ToString()
-                                                      });
-
-            var yearlist = modelService.GetAll().ToList();
-
-            ViewBag.Yearlists= yearlist.Select(x =>
-                                                      new SelectListItem()
-                                                      {
-                                                          Text = x.ToString(),
-                                                          Value = x.ToString()
-                                                      });
-
-
-            return View(new List<Model>());
         }
 
-        [HttpPost]
-        public ActionResult Index(int cc)
+        public ActionResult Query(MotoSearch parm)
         {
-            modelService = new ModelService();
-            var models = modelService.GetAll().ToList();
-
-            ViewBag.Models = models.Select(x =>
-                                  new SelectListItem()
-                                  {
-                                      Text = x.cc.ToString(),
-                                      Value = x.id.ToString()
-                                  }); ;
-
-            var model = modelService.QueryByCC(cc).ToList();
-            return View(model);
+            InitBag();
+            var model = modelService.Query(parm).ToList();
+            return View("Index", model);
         }
 
-        public ActionResult QueryByCC(int cc)
+        private void InitBag()
         {
+            var brand = brandService.GetAll().Select(x =>
+                                            new SelectListItem()
+                                            {
+                                                Text = x.Brand_name.ToString(),
+                                                Value = x.Brand_code.ToString()
+                                            }).ToList();
 
-            var model = modelService.QueryByCC(cc).ToList();
-            return View(model);
+            brand.Insert(0, (new SelectListItem { Text = "ALL", Value = "" }));
+            ViewBag.Brand_code = brand;
+
+            var year = modelService.GetYear().Select(y =>
+                                            new SelectListItem()
+                                            {
+                                                Text = y.ToString(),
+                                                Value = y.ToString()
+                                            }).ToList();
+            year.Insert(0, (new SelectListItem { Text = "ALL", Value = "" }));
+            ViewBag.Year = year;
         }
 
     }
