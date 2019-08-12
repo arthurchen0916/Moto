@@ -12,7 +12,7 @@ namespace Moto.Common.Models
         public string Name { get; set; }
 
         [DisplayName("金額：")]
-        public int Amount { get; set; }
+        public int? Amount { get; set; }
 
         [DisplayName("品項：")]
         public string Detail { get; set; }

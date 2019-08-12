@@ -25,6 +25,7 @@ namespace Moto.Core
 
         public IEnumerable<Transaction> Query(TransactionRecord p)
         {
+
             string sql = "select * from dbo.TransactionRecord where 1=1 ";
 
 
@@ -32,11 +33,14 @@ namespace Moto.Core
             //if (m.Year != "") { sql += " and year =" + m.Year; }
             //if (m.cc_s != "") { sql += " and cc >=" + m.cc_s; }
             //if (m.cc_e != "") { sql += " and cc <=" + m.cc_e; }
-            //if (!string.IsNullOrEmpty((m.Date).ToString())) {  sql += $" and Date  ='{(m.Date).ToString("''yyyy-MM-dd''")}'"; }
-            if (!string.IsNullOrEmpty(p.Name)) { sql += $" and Name ='{p.Name}'"; }
-            //if (!string.IsNullOrEmpty((m.Amount).ToString())) { sql += $" and Amount ={m.Amount}"; }
-            if (!string.IsNullOrEmpty(p.Detail)) { sql += " and Detail =" + p.Detail; }
-            if (!string.IsNullOrEmpty(p.Memo)) { sql += " and Memo =" + p.Memo; }
+
+            // if (!string.IsNullOrEmpty((p.Date).ToString())) {  sql += " and Date  ="+"'"+(p.Date).ToString("yyyy-MM-dd")+"'"; }
+            if (!string.IsNullOrEmpty(p.Name)) { sql += " and Name =" + "'" + p.Name + "'"; }
+            if (!string.IsNullOrEmpty((p.Amount).ToString())) { sql += $" and Amount ={p.Amount}"; }
+            if (!string.IsNullOrEmpty(p.Detail)) { sql += " and Detail =" + "'" + p.Detail + "'"; }
+            if (!string.IsNullOrEmpty(p.Memo)) { sql += " and Memo =" +"'"+ p.Memo+"'"; }
+            if (!string.Equals((p.Date).ToString(), "0001 / 1 / 1 上午 12:00:00")) { sql += " and Date  =" + "'" + (p.Date).ToString("yyyy-MM-dd") + "'"; }
+
 
             string sql2 = "select count(*) from dbo.Transaction where 1=1";
 
@@ -45,9 +49,9 @@ namespace Moto.Core
             return result;
         }
 
+        
 
-
-        public bool Add(Transaction model)
+    public bool Add(Transaction model)
         {
             bool result = false;
             var chk = transactionRepository.GetById(model.id);
@@ -97,7 +101,6 @@ namespace Moto.Core
 
             return result;
         }
-
 
 
     }

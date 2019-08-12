@@ -6,7 +6,7 @@ namespace Moto.Common.Entities
     {
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        public int Amount { get; set; }
+        public int? Amount { get; set; }
         public string Detail { get; set; }
         public string Memo { get; set; }
         public DateTime Update_Date { get; set; }

@@ -34,9 +34,9 @@ namespace Moto.Core
             //if (m.cc_e != "") { sql += " and cc <=" + m.cc_e; }
             if (!string.IsNullOrEmpty(m.Phone_Number)) { sql += $" and Phone_Number  ={m.Phone_Number}"; }
             if (!string.IsNullOrEmpty(m.Tel_Number)) { sql += " and Tel_Number =" + m.Tel_Number; }
-            if (!string.IsNullOrEmpty(m.Name)) { sql += $" and Name ='{m.Name}'"; }
-            if (!string.IsNullOrEmpty(m.License_Plate)) { sql += " and License_Plate =" + m.License_Plate; }
-            if (!string.IsNullOrEmpty(m.Address)) { sql += " and Address =" + "''m.Address''"; }
+            if (!string.IsNullOrEmpty(m.Name)) { sql += " and Name like"+"'%"+m.Name+"%'"; }
+            if (!string.IsNullOrEmpty(m.License_Plate)) { sql += " and License_Plate =" +"'"+ m.License_Plate+"'"; }
+            if (!string.IsNullOrEmpty(m.Address)) { sql += " and Address like" + "'%"+m.Address+"%'"; }
 
             string sql2 = "select count(*) from dbo.Customer where 1=1";
 

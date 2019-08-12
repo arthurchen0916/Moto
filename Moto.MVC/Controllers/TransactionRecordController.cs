@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Moto.Core;
 using Moto.Common.Entities;
 using Moto.Common.Models;
+using Moto.MVC.Models;
 
 namespace Moto.MVC.Controllers
 {
@@ -24,5 +25,6 @@ namespace Moto.MVC.Controllers
             var model = transactionService.Query(p).ToList();
             return View("Index", model);
         }
+
     }
 }

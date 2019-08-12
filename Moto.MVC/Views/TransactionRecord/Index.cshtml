@@ -44,8 +44,8 @@
     <h1>客戶消費紀錄</h1>
     @using (Html.BeginForm("Query", "TransactionRecord", FormMethod.Post))
     {
-        //<div id="diva" style="height:21px">日期：@Html.TextBox("Date", "", new { style = "width:150px", Type = "Date" })</div>
-        <div id="diva">客戶姓名：@Html.TextBox("Name", "", new { style = "width:150px" })</div>
+        <div id="diva" style="height:21px">日期：@Html.TextBox("Date", "", new { style = "width:150px", Type = "Date" })</div>
+        <div id="diva">客戶姓名：@Html.TextBox("Name", "", new { style = "width:150px", id = "txtbox_Name" })</div>
         <div id="diva">金額： @Html.TextBox("Amount", "", new { style = "width:150px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" })</div>
         <div id="diva" style="height:21px"></div>
         <div id="diva">品項： @Html.TextBox("Detail", "", new { style = "width:150px" })</div>
