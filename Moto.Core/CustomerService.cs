@@ -4,6 +4,7 @@ using Moto.Common.Models;
 using Moto.Dal;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Moto.Core
 {
@@ -23,81 +24,29 @@ namespace Moto.Core
         }
 
 
-        public IEnumerable<Customer> Query(CustomerManagement m)
+
+        [HttpPost]
+        public IEnumerable<Customer> Query(CustomerManagement m,string btn,string sql)
         {
-            string sql = "select * from dbo.Customer where 1=1 ";
+           if (btn.Equals("Query"))
+                    {
+                         sql = "select * from dbo.Customer where 1=1 ";
 
+                        if (!string.IsNullOrEmpty(m.Phone_Number)) { sql += $" and Phone_Number  ={m.Phone_Number}"; }
+                        if (!string.IsNullOrEmpty(m.Tel_Number)) { sql += " and Tel_Number =" + m.Tel_Number; }
+                        if (!string.IsNullOrEmpty(m.Name)) { sql += " and Name like" + "'%" + m.Name + "%'"; }
+                        if (!string.IsNullOrEmpty(m.License_Plate)) { sql += " and License_Plate =" + "'" + m.License_Plate + "'"; }
+                        if (!string.IsNullOrEmpty(m.Address)) { sql += " and Address like" + "'%" + m.Address + "%'"; }
+                    }
 
-            //if(m.Brand_code != "") { sql += "and brand_code =" + m.Brand_code; }
-            //if (m.Year != "") { sql += " and year =" + m.Year; }
-            //if (m.cc_s != "") { sql += " and cc >=" + m.cc_s; }
-            //if (m.cc_e != "") { sql += " and cc <=" + m.cc_e; }
-            if (!string.IsNullOrEmpty(m.Phone_Number)) { sql += $" and Phone_Number  ={m.Phone_Number}"; }
-            if (!string.IsNullOrEmpty(m.Tel_Number)) { sql += " and Tel_Number =" + m.Tel_Number; }
-            if (!string.IsNullOrEmpty(m.Name)) { sql += " and Name like"+"'%"+m.Name+"%'"; }
-            if (!string.IsNullOrEmpty(m.License_Plate)) { sql += " and License_Plate =" +"'"+ m.License_Plate+"'"; }
-            if (!string.IsNullOrEmpty(m.Address)) { sql += " and Address like" + "'%"+m.Address+"%'"; }
+            else if (btn.Equals("Create"))
+                    {  
+                          sql = "insert into Customer(Name,License_Plate,Phone_Number,Tel_Number,Address,Del_Flag,Update_Date)Values(" + "'" + m.Name + "'" + "," + "'" + m.License_Plate + "'" + "," + "'" + m.Phone_Number + "'" + "," + "'" + m.Tel_Number + "'" + "," + "'" + m.Address + "'" + ",0," + "GETDATE()) ";
+                   }
 
-            string sql2 = "select count(*) from dbo.Customer where 1=1";
-
-            var result = customerRepository.QueryCustomerBySql(sql,sql2);
-
+            var result = customerRepository.QueryCustomerBySql(sql);
             return result;
         }
-
-
-
-        public bool Add(Customer model)
-        {
-            bool result = false;
-            var chk = customerRepository.GetById(model.id);
-            if (null == chk)
-            {
-                customerRepository.Add(model);
-                result = true;
-            }
-            else
-            {
-                // todo something
-            }
-
-            return result;
-        }
-
-        public bool Update(Customer model)
-        {
-            bool result = false;
-            var chk = customerRepository.GetById(model.id);
-            if (null == chk)
-            {
-                // todo something
-            }
-            else
-            {
-                customerRepository.Update(model);
-                result = true;
-            }
-
-            return result;
-        }
-
-        public bool Remove(int id)
-        {
-            bool result = false;
-            var chk = customerRepository.GetById(id);
-            if (null == chk)
-            {
-                // todo something
-            }
-            else
-            {
-                customerRepository.Remove(chk);
-                result = true;
-            }
-
-            return result;
-        }
-
 
 
     }

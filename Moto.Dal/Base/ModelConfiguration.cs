@@ -21,7 +21,6 @@ namespace Moto.Dal.Base
             this.Property(t => t.Front_wheel_brakes);
             this.Property(t => t.Rear_wheel_brakes);
             this.Property(t => t.ABS);
-            this.Property(t => t.Instrument_panel);
             this.Property(t => t.Factory_price);
             this.Property(t => t.Retail_price);
             this.Property(t => t.update_date);
@@ -36,7 +35,6 @@ namespace Moto.Dal.Base
             this.Property(t => t.Front_wheel_brakes).HasColumnName("Front_wheel_brakes");
             this.Property(t => t.Rear_wheel_brakes).HasColumnName("Rear_wheel_brakes");
             this.Property(t => t.ABS).HasColumnName("ABS");
-            this.Property(t => t.Instrument_panel).HasColumnName("Instrument_panel");
             this.Property(t => t.Factory_price).HasColumnName("Factory_price");
             this.Property(t => t.Retail_price).HasColumnName("Retail_price");
             this.Property(t => t.update_date).HasColumnName("update_date");

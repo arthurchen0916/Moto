@@ -42,9 +42,8 @@ namespace Moto.Core
             if (!string.Equals((p.Date).ToString(), "0001 / 1 / 1 上午 12:00:00")) { sql += " and Date  =" + "'" + (p.Date).ToString("yyyy-MM-dd") + "'"; }
 
 
-            string sql2 = "select count(*) from dbo.Transaction where 1=1";
 
-            var result = transactionRepository.QueryTransactionBySql(sql,sql2);
+            var result = transactionRepository.QueryTransactionBySql(sql);
 
             return result;
         }

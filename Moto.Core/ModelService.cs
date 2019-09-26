@@ -47,9 +47,8 @@ namespace Moto.Core
             if (!string.IsNullOrEmpty(m.Factory_price2)) { sql += " and Factory_price <=" + m.Factory_price2; }
             if (!string.IsNullOrEmpty(m.ABS)) { sql += " and ABS =" + m.ABS; }
 
-            string sql2 = "select count(*) from dbo.Model where 1=1";
 
-            var result = modelRepository.QueryModelBySql(sql,sql2);
+            var result = modelRepository.QueryModelBySql(sql);
             
             return result;
         }

@@ -16,7 +16,6 @@ namespace Moto.MVC.Controllers
         {
             IEnumerable<Customer> model = new List<Customer>();
             return View(model);
-
         }
 
         public ActionResult Query(CustomerManagement n)
