@@ -23,23 +23,23 @@ namespace Moto.Core
         }
 
 
-        public IEnumerable<Transaction> Query(TransactionRecord p)
+        public IEnumerable<Transaction> Query(TransactionRecord p,string btn,string sql)
         {
+            if (btn.Equals("Query"))
+            {
+                sql = "select * from dbo.TransactionRecord where 1=1 ";
 
-            string sql = "select * from dbo.TransactionRecord where 1=1 ";
+                if (!string.IsNullOrEmpty(p.Name)) { sql += " and Name =" + "'" + p.Name + "'"; }
+                if (!string.IsNullOrEmpty((p.Amount).ToString())) { sql += $" and Amount ={p.Amount}"; }
+                if (!string.IsNullOrEmpty(p.Detail)) { sql += " and Detail =" + "'" + p.Detail + "'"; }
+                if (!string.IsNullOrEmpty(p.Memo)) { sql += " and Memo =" + "'" + p.Memo + "'"; }
+                if (!string.Equals((p.Date).ToString(), "0001 / 1 / 1 上午 12:00:00")) { sql += " and Date  =" + "'" + (p.Date).ToString("yyyy-MM-dd") + "'"; }
+            }
 
-
-            //if(m.Brand_code != "") { sql += "and brand_code =" + m.Brand_code; }
-            //if (m.Year != "") { sql += " and year =" + m.Year; }
-            //if (m.cc_s != "") { sql += " and cc >=" + m.cc_s; }
-            //if (m.cc_e != "") { sql += " and cc <=" + m.cc_e; }
-
-            // if (!string.IsNullOrEmpty((p.Date).ToString())) {  sql += " and Date  ="+"'"+(p.Date).ToString("yyyy-MM-dd")+"'"; }
-            if (!string.IsNullOrEmpty(p.Name)) { sql += " and Name =" + "'" + p.Name + "'"; }
-            if (!string.IsNullOrEmpty((p.Amount).ToString())) { sql += $" and Amount ={p.Amount}"; }
-            if (!string.IsNullOrEmpty(p.Detail)) { sql += " and Detail =" + "'" + p.Detail + "'"; }
-            if (!string.IsNullOrEmpty(p.Memo)) { sql += " and Memo =" +"'"+ p.Memo+"'"; }
-            if (!string.Equals((p.Date).ToString(), "0001 / 1 / 1 上午 12:00:00")) { sql += " and Date  =" + "'" + (p.Date).ToString("yyyy-MM-dd") + "'"; }
+            else if (btn.Equals("Create"))
+            {
+                sql= sql = "insert into TransactionRecord (Name,Date,Amount,Detail,Memo,Update_Date)Values(" + "'" + p.Name + "'" + "," + "'" +(p.Date).ToString("yyyy-MM-dd") + "'" + "," + "'" +p.Amount + "'" + "," + "'" +p.Detail + "'" + "," + "'" +p.Memo + "'" +","+"GETDATE()) ";
+            }
 
 
 

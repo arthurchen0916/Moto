@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="background-color:#CBE0F5">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
@@ -13,9 +13,10 @@
         #login-div {
             position: absolute;
             left: 40%;
-            top: 40%;
-            border: 1px solid #ccc;
+            top: 10%;
+            border: 1px solid #000000;
             padding: 10px 10px;
+             font-family:微軟正黑體
         }
 
         .field-validation-error {
@@ -30,10 +31,10 @@
             <table>
                 <tr>
                     <td></td>
-                    <td style="text-decoration:underline">會員登入</td>
+                    <td><h1>iMoto 會員登入</h1></td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="padding:10px">
                         @Html.LabelFor(model => model.Name)
                     </td>
                     <td>
@@ -46,7 +47,7 @@
                 </tr>
 
                 <tr>
-                    <td>
+                    <td  style="padding:10px">
                         @Html.LabelFor(model => model.Password)
                     </td>
                     <td>
@@ -58,7 +59,7 @@
                     <td>@Html.ValidationMessageFor(model => model.Password)</td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2"  style="padding:10px">
                         <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
                     </td>
                 </tr>

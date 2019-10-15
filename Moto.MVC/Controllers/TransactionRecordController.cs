@@ -20,9 +20,9 @@ namespace Moto.MVC.Controllers
 
         }
 
-        public ActionResult Query(TransactionRecord p)
+        public ActionResult Query(TransactionRecord p,string btn,string sql)
         {
-            var model = transactionService.Query(p).ToList();
+            var model = transactionService.Query(p,btn,sql).ToList();
             return View("Index", model);
         }
 

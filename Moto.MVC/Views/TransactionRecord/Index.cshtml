@@ -7,7 +7,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="background-color:#CBE0F5; font-family:微軟正黑體">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>客戶消費紀錄</title>
@@ -44,15 +44,13 @@
     <h1>客戶消費紀錄</h1>
     @using (Html.BeginForm("Query", "TransactionRecord", FormMethod.Post))
     {
-        <div id="diva" style="height:21px">日期：@Html.TextBox("Date","2019-01-01", new { style = "width:150px", Type = "Date" })</div>
+        <div id="diva" style="height:21px">日期：@Html.TextBox("Date", "2019-01-01", new { style = "width:150px", Type = "Date" })</div>
         <div id="diva">客戶姓名：@Html.TextBox("Name", "", new { style = "width:150px", id = "txtbox_Name" })</div>
         <div id="diva">金額： @Html.TextBox("Amount", "", new { style = "width:150px", Type = "number", onkeypress = "return (/[\\d]/.test(String.fromCharCode(event.keyCode)))" })</div>
-        <div id="diva" style="height:21px"></div>
         <div id="diva">品項： @Html.TextBox("Detail", "", new { style = "width:150px" })</div>
-        <div id="divc" style="width:5%"> <input type="submit" value="查詢" class="btn btn-default" /></div>
-        <div id="divc" style="width:5%"> <input type="submit" value="新增" class="btn btn-default" /></div>
         <div id="diva">備註： @Html.TextBox("Memo", "", new { style = "width:150px" })</div>
-        <div id="diva" style="height:21px"></div>
+        <div id="divc" style="width:5%"> <input type="submit" value="Query" name="btn" /></div>
+        <div id="divc" style="width:5%"> <input type="submit" value="Create" name="btn" /></div>
     }
 
     <div id="divb"><h3>查詢結果</h3></div>

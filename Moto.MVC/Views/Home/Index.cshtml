@@ -8,22 +8,29 @@
 
 <!DOCTYPE html>
 
-<html>
+<html  style="background-color:#CBE0F5; font-family:微軟正黑體">
 
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>iMoto管理系統</title>
+    <style>
+        #Dashboard-div {
+            position: absolute;
+            left: 40%;
+            padding: 10px 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div>
+    <div id="Dashboard-div">
         <h1>iMoto管理系統主畫面</h1>
-        <br><br>
-        @Html.ActionLink("1.機車查詢", "Index", "MotoSearch")<br><br>
-        @Html.ActionLink("2.客戶管理", "Index", "CustomerManagement")<br><br>
-        @Html.ActionLink("3.客戶消費紀錄", "Index", "TransactionRecord")<br><br>
-        @Html.ActionLink("4.材料庫存管理", "Index", "Material")<br><br>
-        @Html.ActionLink("5.廠商資料維護", "Index", "Vendor")<br><br>
+        <br>
+        請點選以下欲使用的功能<br><br>
+        @Html.ActionLink("機車資料查詢", "Index", "MotoSearch","",new { style="font-size:18px"})<br><br>
+        @Html.ActionLink("客戶資料管理", "Index", "CustomerManagement","",new { style="font-size:18px"})<br><br>
+        @Html.ActionLink("客戶消費紀錄", "Index", "TransactionRecord","",new { style="font-size:18px"})<br><br><br><br>
+
 
         <a href="@Url.Action("LogOut","Home")">會員登出</a>
     </div>

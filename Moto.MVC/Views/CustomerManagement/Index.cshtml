@@ -7,7 +7,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="background-color:#CBE0F5; font-family:微軟正黑體">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>客戶管理系統</title>
@@ -50,8 +50,8 @@
         <div id="diva">姓名： @Html.TextBox("Name", "", new { style = "width:70px" })</div>
         <div id="diva">車牌號碼： @Html.TextBox("License_Plate", "", new { style = "width:80px" })</div>
         <div id="diva">地址： @Html.TextBox("Address", "", new { style = "width:150px" })</div>
-        <div id="divc"> <input type="submit" value="Query" name="btn" class="btn btn-default" /></div>
-        <div id="divc"> <input type="submit" value="Create" name="btn" class="btn btn-default" /></div>
+        <div id="divc"> <input type="submit" value="Query" name="btn"  /></div>
+        <div id="divc"> <input type="submit" value="Create" name="btn" /></div>
     }
 
     <div id="divb"><h3>查詢結果</h3></div>
@@ -88,7 +88,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => model.Address)
                     </td>
-                    <td>@Html.ActionLink("交易明細", "Query", "TransactionRecord",new { @name =model.Name },null)</td>
+                    <td>@Html.ActionLink("交易明細", "Query", "TransactionRecord",new { @name =model.Name,btn="Query"},null)</td>
                 </tr>
             }
         </table>

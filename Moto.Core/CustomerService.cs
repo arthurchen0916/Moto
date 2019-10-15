@@ -24,8 +24,7 @@ namespace Moto.Core
         }
 
 
-
-        [HttpPost]
+        
         public IEnumerable<Customer> Query(CustomerManagement m,string btn,string sql)
         {
            if (btn.Equals("Query"))

@@ -18,10 +18,14 @@ namespace Moto.MVC.Controllers
             return View(model);
         }
 
-        public ActionResult Query(CustomerManagement n)
+
+
+        public ActionResult Query(CustomerManagement m,string btn,string sql)
         {
-            var model = customerService.Query(n).ToList();
+            var model = customerService.Query(m,btn,sql).ToList();
             return View("Index", model);
         }
+
+
     }
 }
